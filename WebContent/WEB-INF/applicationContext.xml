@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+	
+    <!-- Basic Configurations -->
+    <context:annotation-config/>
+    <mvc:annotation-driven  />
+    
+    <context:component-scan base-package="com.mems.*" />
+
+    <mvc:view-controller path="/" view-name="login"/>
+	
+    <!-- CommonsMultipartResolver multipart/form-data -->
+	<bean id="multipartResolver"
+	  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
+        <property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+	</bean>
+    
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /Webcontent/views directory -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<mvc:resources mapping="/static/**" location="/static/" />
+	<mvc:resources mapping="/viewsScripts/**" location="/viewsScripts/" />
+	
+	<!-- UTF-8 decoding -->
+	
+	<bean class = "org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	    <property name="messageConverters">
+	        <array>
+	            <bean class = "org.springframework.http.converter.StringHttpMessageConverter">
+	                <property name="supportedMediaTypes" value = "text/plain;charset=UTF-8" />
+	            </bean>
+	        </array>
+	    </property>
+	</bean>
+	
+	<!-- SpringMVC -->
+    <import resource="spring/spring-mvc.xml"/>
+	
+    <!-- Registration of Formatters -->
+    <import resource="spring/context-conversion-service.xml"/>
+    
+    <!-- SpringSecurity -->
+    <import resource="spring/spring-security.xml"/>
+    
+</beans>
