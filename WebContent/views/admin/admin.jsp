@@ -6,6 +6,7 @@
 <tiles:insertDefinition name="master.pageAdmin">
     <tiles:putAttribute name="body">
 	
-
+	<legend>Narzędzia administracyjne aplikacji MEMS</legend>
+    
     </tiles:putAttribute>
 </tiles:insertDefinition>

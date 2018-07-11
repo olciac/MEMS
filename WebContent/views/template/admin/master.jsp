@@ -47,7 +47,6 @@
 				<div class="col-md-9">
 					<div class="row">
 						<tiles:insertAttribute name="body" />
-						
 					</div>
 				</div>
        		</div>

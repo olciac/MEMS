@@ -66,7 +66,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
     public String adminPage(ModelMap model) {
-		return "admin/admin";
+		return "home/main";
     }
 	
     @RequestMapping(value = "/login", method = RequestMethod.GET)
